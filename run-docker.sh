@@ -1,6 +1,9 @@
 #!/bin/bash
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-docker pull dueyfinster/lang:haskell
+docker build -t dueyfinster/haskell $DIR
 
-docker run --rm=true -ti -v $DIR:/data --name haskell dueyfinster/lang:haskell
+docker stop haskell
+docker rm -f haskell 
+
+docker run --rm=true -ti -v $DIR:/data --name haskell dueyfinster/haskell
